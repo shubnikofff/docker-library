@@ -7,6 +7,7 @@ COPY ./icu_57.1-1_amd64.deb /tmp/icu_57.1-1_amd64.deb
 RUN apt-get update && apt-get -y install \
 	git \
 	libssl-dev \
+	libxml2-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     && dpkg -i /tmp/icu_57.1-1_amd64.deb && rm /tmp/icu_57.1-1_amd64.deb \
