@@ -7,7 +7,6 @@ COPY ./icu_57.1-1_amd64.deb /tmp/icu_57.1-1_amd64.deb
 RUN apt-get update && apt-get -y install \
 	git \
 	libssl-dev \
-	libxml2-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     && dpkg -i /tmp/icu_57.1-1_amd64.deb && rm /tmp/icu_57.1-1_amd64.deb \
@@ -15,15 +14,14 @@ RUN apt-get update && apt-get -y install \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 
     && docker-php-ext-install -j$(nproc) \
-       xmlrpc \
        gd \
        intl \
        pdo_mysql \
        zip \
 
-#Install Mongo Xdebug
-    && pecl install mongo xdebug \
-    && docker-php-ext-enable mongo \
+#Install MongoDB Xdebug
+    && pecl install mongodb xdebug \
+    && docker-php-ext-enable mongodb \
 
 #Install Composer
     && curl -sS https://getcomposer.org/installer | php \
