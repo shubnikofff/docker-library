@@ -1,4 +1,4 @@
-FROM nginx:latest as builder
+FROM nginx:latest AS builder
 
 LABEL maintainer="shubnikov.av@gmail.com"
 
